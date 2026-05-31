@@ -1,10 +1,51 @@
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { MdOutlineRestaurantMenu } from 'react-icons/md'
+
+import images from '../../constants/images'
 import './Navbar.css'
+import { useState } from 'react'
 
 function Navbar() {
+  const[toggleMenu, setToggleMenu] = useState(false);
+
   return (
-    <div>
-      Navbar
-    </div>
+    <nav className='app__navbar'>
+      <div className="app__navbar-logo">
+        <img src={images.goldenfork} alt="App Logo" />
+      </div>
+
+      <ul className="app__navbar-links">
+        <li className="p__montserrat"><a href="#home">Home</a></li>
+        <li className="p__montserrat"><a href="#about">About</a></li>
+        <li className="p__montserrat"><a href="#menu">Menu</a></li>
+        <li className="p__montserrat"><a href="#awards">Awards</a></li>
+        <li className="p__montserrat"><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div className="app__navbar-login">
+        <a href="#login" className="p__montserrat">Log In / Register</a>
+        <div />
+        <a href="/" className="p__montserrat">Book Table</a>
+      </div>
+
+      <div className="app__navbar-smallscreen">
+        <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
+
+         {toggleMenu && ( 
+        <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
+          <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
+          <ul className="app__navbar-smallscreen_links">
+            <li className="p__montserrat"><a href="#home">Home</a></li>
+            <li className="p__montserrat"><a href="#about">About</a></li>
+            <li className="p__montserrat"><a href="#menu">Menu</a></li>
+            <li className="p__montserrat"><a href="#awards">Awards</a></li>
+            <li className="p__montserrat"><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        )}
+
+      </div>
+    </nav>
   )
 }
 
