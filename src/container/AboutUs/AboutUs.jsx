@@ -15,7 +15,7 @@ function AboutUs() {
           <p className="p__opensans">
             Nestled in the vibrant heart of Addis Ababa, Golden Fork Restaurant is a celebration of culinary excellence where Ethiopian warmth meets refined dining. We bring together bold, authentic flavours and contemporary presentation, crafting every dish with passion and precision to offer our guests an unforgettable experience.
             </p>
-          <button type="button" className="custom__button">Know More</button>
+          <button type="button" className="custom__button">Our Story</button>
         </div>
 
         <div className="app__aboutus-content_knife flex__center">
@@ -28,7 +28,7 @@ function AboutUs() {
           <p className="p__opensans">
             Founded in 2004 in Addis Ababa, Golden Fork began as a humble vision — to honour Ethiopia's rich culinary heritage while elevating it to a fine dining standard. Over two decades, we have grown from a cherished local favourite into a landmark dining destination, proudly serving generations of families and guests.
             </p>
-          <button type="button" className="custom__button">Know More</button>
+          <button type="button" className="custom__button">Our Journey</button>
         </div>
 
       </div>
