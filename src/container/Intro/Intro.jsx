@@ -1,9 +1,49 @@
+import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
+import { meal } from '../../constants'
 import './Intro.css'
+import { useRef, useState } from 'react'
 
 function Intro() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [playVideo, setPlayVideo] = useState(false);
+  const vidRef = useRef();
+
+  const handleVideo = () => {
+    setPlayVideo((prevPlayVideo) => !prevPlayVideo);
+
+    if(playVideo) {
+      vidRef.current.pause();
+    } else {
+      vidRef.current.play();
+    }
+  }
+
+
   return (
-    <div>
-      Intro
+    <div 
+      className="app__video"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      >
+      <video 
+        src={meal}
+        ref={vidRef}
+        type="video/mp4"
+        loop
+        controls={false}
+        muted
+      />
+      <div className="app__video-overlay flex__center">
+      <div
+        className={`app__video-overlay_circle flex__center ${!playVideo || isHovered ? 'circle--visible' : 'circle--hidden'}`}
+        onClick={handleVideo}
+      >
+        {playVideo
+          ? <BsPauseFill color="#fff" fontSize={30} />
+          : <BsFillPlayFill color="#fff" fontSize={30} />
+        }
+      </div>
+      </div>
     </div>
   )
 }
