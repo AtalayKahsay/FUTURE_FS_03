@@ -8,6 +8,7 @@ import gallery03 from '../assets/gallery03.png';
 import gallery04 from '../assets/gallery04.png';
 import gallery05 from '../assets/gallery05.png';
 import gallery06 from '../assets/gallery06.png';
+import gallery07 from '../assets/gallery07.png';
 import knife from '../assets/knife.png';
 import logo from '../assets/logo.png';
 import menu from '../assets/menu.png';
@@ -35,6 +36,7 @@ export default {
   gallery04,
   gallery05,
   gallery06,
+  gallery07,
   knife,
   logo,
   menu,
