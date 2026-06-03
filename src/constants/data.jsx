@@ -58,24 +58,24 @@ const cocktails = [
 
 const awards = [
   {
-    imgUrl: images.award02,
-    title: 'Bib Gourmond',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
-  },
-  {
     imgUrl: images.award01,
     title: 'Rising Star',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
+    subtitle: 'Recognised for redefining Ethiopian dining with bold, innovative cuisine.',
   },
   {
-    imgUrl: images.award05,
-    title: 'AA Hospitality',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
+    imgUrl: images.award02,
+    title: 'Bib Gourmand',
+    subtitle: 'Celebrated for exceptional flavour and remarkable value in every dish.',
   },
   {
     imgUrl: images.award03,
     title: 'Outstanding Chef',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur.',
+    subtitle: 'Honoured for culinary mastery rooted in authentic Ethiopian tradition.',
+  },
+  {
+    imgUrl: images.award05,
+    title: 'AA Hospitality',
+    subtitle: 'Awarded for delivering warm, world-class service since our founding.',
   },
 ];
 
