@@ -21,16 +21,16 @@ function Gallery() {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    let currentIndex = 0;
+
     const interval = setInterval(() => {
       const { current } = scrollRef;
       if (!current) return;
 
       const cardWidth = current.firstChild?.offsetWidth || 300;
-      const isAtEnd = current.scrollLeft + current.offsetWidth >= current.scrollWidth;
-
       const cards = current.querySelectorAll('.app__gallery-images_card');
-      const visibleIndex = Math.round(current.scrollLeft / cardWidth);
-      const visibleCard = cards[visibleIndex];
+      const totalCards = cards.length;
+      const visibleCard = cards[currentIndex];
 
       if (visibleCard) {
         visibleCard.classList.add('auto-hover');
@@ -42,7 +42,9 @@ function Gallery() {
         }
 
         setTimeout(() => {
-          if (isAtEnd) {
+          currentIndex = (currentIndex + 1) % totalCards;
+
+          if (currentIndex === 0) {
             current.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
             current.scrollBy({ left: cardWidth, behavior: 'smooth' });
