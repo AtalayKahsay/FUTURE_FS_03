@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { BsInstagram, BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs'
 
 import { images } from '../../constants'
@@ -16,8 +16,45 @@ const galleryImages = [
   images.gallery07
 ];
 
+
 function Gallery() {
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const { current } = scrollRef;
+      if (!current) return;
+
+      const cardWidth = current.firstChild?.offsetWidth || 300;
+      const isAtEnd = current.scrollLeft + current.offsetWidth >= current.scrollWidth;
+
+      const cards = current.querySelectorAll('.app__gallery-images_card');
+      const visibleIndex = Math.round(current.scrollLeft / cardWidth);
+      const visibleCard = cards[visibleIndex];
+
+      if (visibleCard) {
+        visibleCard.classList.add('auto-hover');
+      }
+
+      setTimeout(() => {
+        if (visibleCard) {
+          visibleCard.classList.remove('auto-hover');
+        }
+
+        setTimeout(() => {
+          if (isAtEnd) {
+            current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+          }
+        }, 300);
+
+      }, 1000);
+
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const scroll = (direction) => {
     const { current } = scrollRef;

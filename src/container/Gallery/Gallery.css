@@ -74,6 +74,16 @@
   opacity: 1;
 }
 
+.app__gallery-images_card.auto-hover img {
+  opacity: 0.35;
+  transition: opacity 0.5s ease;
+}
+
+.app__gallery-images_card.auto-hover .gallery__image-icon {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
 .app__gallery-images_arrows {
   width: 100%;
   display: flex;
