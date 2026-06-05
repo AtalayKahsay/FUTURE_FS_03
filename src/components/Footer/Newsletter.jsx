@@ -1,7 +1,41 @@
+import { useState } from 'react';
+import { BsCheckCircle } from 'react-icons/bs'
 import SubHeading from '../SubHeading/SubHeading'
 import './Newsletter.css'
 
 function Newsletter() {
+  const [subscribed, setSubscribed] = useState(false);
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+
+  const validateEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  }
+
+  const handleSubscribe = () => {
+    if (subscribed) {
+      setSubscribed(false);
+      setEmail('');
+      setError('');
+      return;
+    }
+
+    if (!email.trim()) {
+      setError('Please enter your email address.');
+      return;
+    }
+
+  if (!validateEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    setError('');
+    setSubscribed(true);
+  }
+
+
   return (
     <div className="app__newsletter">
       <div className="app__newsletter-heading">
@@ -11,8 +45,26 @@ function Newsletter() {
       </div>
 
       <div className="app__newsletter-input flex__center">
-        <input type="email" name="email" id="email" placeholder="Enter your email address" />
-        <button className="custom__button">Subscribe</button>
+        <div className="app__newsletter-input_wrapper">
+    <input 
+      type="email" 
+      name="email" 
+      id="email" 
+      placeholder="Enter your email address"
+      value={email}
+      onChange={(e) => {
+        setEmail(e.target.value);
+        setError('');
+      }}
+    />
+    {error && <p className="newsletter__error">{error}</p>}
+  </div>
+        <button
+          className={`custom__button ${subscribed ? 'subscribed__button' : ''}`}
+          onClick={handleSubscribe}
+        >
+          {subscribed ? <><BsCheckCircle style={{marginRight: '6px'}} /> Subscribed</> : 'Subscribe'}
+        </button>
       </div>
     </div>
   )
