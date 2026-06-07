@@ -1,13 +1,15 @@
 .app__navbar {
-  color: var(--color-white);
   width: 100%;
   display: flex;
-  border: 2px solid black;
   justify-content: space-between;
   align-items: center;
   background: var(--color-black);
 
   padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
 .app__navbar-logo {
@@ -111,6 +113,10 @@
 }
 
 @media screen and (max-width: 1150px) {
+  .app {
+    padding-top: 50px;
+  }
+
   .app__navbar-links {
     display: none;
   }
@@ -121,6 +127,10 @@
 }
 
 @media screen and (max-width: 650px) {
+  .app {
+  padding-top: 38px;
+}
+
   .app__navbar {
     padding: 1rem;
   }
