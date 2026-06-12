@@ -31,6 +31,14 @@
   margin-right: 2rem;
 }
 
+.newsletter__success {
+  color: #2ecc71;
+  font-family: var(--font-alt);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
 .app__newsletter-input button {
   width: max-content;
 }

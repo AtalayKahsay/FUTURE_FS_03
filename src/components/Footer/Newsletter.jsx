@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsCheckCircle } from 'react-icons/bs'
 import SubHeading from '../SubHeading/SubHeading'
 import './Newsletter.css'
@@ -7,11 +7,21 @@ function Newsletter() {
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const validateEmail = (value) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(value);
   }
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const handleSubscribe = () => {
     if (subscribed) {
@@ -33,6 +43,8 @@ function Newsletter() {
 
     setError('');
     setSubscribed(true);
+    setEmail('');
+    setSuccessMessage(true);
   }
 
 
@@ -58,6 +70,11 @@ function Newsletter() {
       }}
     />
     {error && <p className="newsletter__error">{error}</p>}
+    {successMessage && (
+      <p className="newsletter__success">
+        Thank you for subscribing! Stay tuned for special offers and updates.
+      </p>
+    )}
   </div>
         <button
           className={`custom__button ${subscribed ? 'subscribed__button' : ''}`}
