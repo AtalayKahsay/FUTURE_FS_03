@@ -4,10 +4,10 @@ import SubHeading from '../SubHeading/SubHeading'
 import './Newsletter.css'
 
 function Newsletter() {
-  const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const validateEmail = (value) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,37 +15,32 @@ function Newsletter() {
   }
 
   useEffect(() => {
-    if (successMessage) {
+    if (isSuccess) {
       const timer = setTimeout(() => {
-        setSuccessMessage(false);
+        setIsSuccess(false);
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [successMessage]);
+  }, [isSuccess]);
 
   const handleSubscribe = () => {
-    if (subscribed) {
-      setSubscribed(false);
-      setEmail('');
-      setError('');
-      return;
-    }
+    if (isSubscribed) return;
 
     if (!email.trim()) {
       setError('Please enter your email address.');
       return;
     }
 
-  if (!validateEmail(email)) {
+    if (!validateEmail(email)) {
       setError('Please enter a valid email address.');
       return;
     }
 
     setError('');
-    setSubscribed(true);
+    setIsSubscribed(true);
     setEmail('');
-    setSuccessMessage(true);
-  }
+    setIsSuccess(true);
+  };
 
 
   return (
@@ -67,20 +62,29 @@ function Newsletter() {
       onChange={(e) => {
         setEmail(e.target.value);
         setError('');
+        setIsSuccess(false);
       }}
     />
     {error && <p className="newsletter__error">{error}</p>}
-    {successMessage && (
+    {isSuccess && (
       <p className="newsletter__success">
         Thank you for subscribing! Stay tuned for special offers and updates.
       </p>
     )}
   </div>
         <button
-          className={`custom__button ${subscribed ? 'subscribed__button' : ''}`}
+          className={`custom__button ${isSubscribed ? 'subscribed__button' : ''}`}
           onClick={handleSubscribe}
+          disabled={isSubscribed}
         >
-          {subscribed ? <><BsCheckCircle style={{marginRight: '6px'}} /> Subscribed</> : 'Subscribe'}
+          {isSubscribed ? (
+            <>
+              <BsCheckCircle style={{ marginRight: '6px' }} />
+              Subscribed
+            </>
+          ) : (
+            'Subscribe'
+          )}
         </button>
       </div>
     </div>
